@@ -1,0 +1,31 @@
+# ==========================
+# Node modules (frontend & backend)
+# ==========================
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# ==========================
+# Frontend build / production files
+# ==========================
+client/dist/
+
+# ==========================
+# Environment / secret files
+# ==========================
+client/.env
+server/.env
+
+# ==========================
+# OS / Editor files
+# ==========================
+.DS_Store
+.vscode/
+*.log
+
+# ==========================
+# Optional: npm debug
+# ==========================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

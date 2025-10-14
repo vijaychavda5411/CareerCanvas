@@ -1,0 +1,107 @@
+/* Wrapper */
+.p-form-wrapper {
+  width: 800px;
+  max-width: 100%;
+  margin: 20px auto; /* push down from navbar */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  font-family: sans-serif;
+}
+
+/* Section Label */
+.p-label {
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Add Button */
+.p-btn-add {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 6px 14px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.p-btn-add:hover {
+  background-color: #0056b3;
+}
+
+/* Block */
+.P-block {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+/* Form Rows */
+.p-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+/* Input Group */
+.p-input-group {
+  flex: 1;
+  min-width: 200px;
+  margin-right: 15px;
+}
+
+.p-input-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #444;
+}
+
+.p-input-group input,
+.p-input-group textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.p-input-group input:focus,
+.p-input-group textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
+}
+
+/* Textarea */
+.p-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Submit Button */
+.P-submit-btn {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.P-submit-btn:hover {
+  background-color: #0056b3;
+}
