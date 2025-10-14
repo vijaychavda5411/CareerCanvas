@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useUser } from "../context/userContext";
-import API_BASE_URL from "../Api";
+import API_BASE_URL from "../api";
 
 const Preview = () => {
   const { userEmail } = useUser();

@@ -2,7 +2,7 @@ import { cache, useState } from "react";
 import "../styles/careerobjective.css";
 import { useUser } from "../context/userContext";
 import axios from "axios";
-import API_BASE_URL from "../Api";
+import API_BASE_URL from "../api";
 
 function CareerObjective() {
 

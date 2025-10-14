@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/WorkExperience.css";
 import { useUser } from "../context/userContext";
-import API_BASE_URL from "../Api";
+import API_BASE_URL from "../api";
 import axios from "axios";
 
 function WorkExperience() {

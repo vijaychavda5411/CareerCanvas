@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/Eduction.css";
 import { useUser } from "../context/userContext";
 import axios from "axios";
-import API_BASE_URL from "../Api";
+import API_BASE_URL from "../api";
 function Eduction() {
 
   const { userEmail } =  useUser();

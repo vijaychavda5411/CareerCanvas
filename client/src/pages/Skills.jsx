@@ -1,7 +1,7 @@
 import "../styles/Skill.css";
 import { useUser } from "../context/userContext";
 import { useState } from "react";
-import API_BASE_URL from "../Api";
+import API_BASE_URL from "../api";
 import axios from "axios";
 
 function Skills() {

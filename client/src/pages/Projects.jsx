@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useUser } from "../context/userContext";
 import axios from "axios";
-import API_BASE_URL from "../Api";
+import API_BASE_URL from "../api";
 import "../styles/Projects.css";
 
 function Projects() {

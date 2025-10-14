@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "../styles/Home.css";
-import API_BASE_URL from "../Api";
+import API_BASE_URL from "../api";
 import { useUser } from "../context/userContext";
 
 function Home() {
