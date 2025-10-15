@@ -1,0 +1,71 @@
+/* nav.css */
+
+/* 1. Base styles for the navbar container */
+.navbar {
+  position: fixed;       /* Fix the navbar at the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;          /* Adjust height as needed */
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;         /* Sit above other content */
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* 2. Reset list styles & layout */
+.navbar ul {
+  list-style: none;
+  margin-left: 30rem;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;           /* Space between links */
+}
+
+/* 3. Link styling */
+.navbar li a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: 500;
+  padding: 10px 0;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+}
+
+/* 4. Hover and active states */
+.navbar li a:hover {
+  color: #0078D4;
+  border-bottom: 2px solid #0078D4;
+}
+
+.navbar li a.active {
+  color: #0078D4;
+  border-bottom: 2px solid #0078D4;
+}
+
+/* 5. Ensure page content isn’t hidden under the navbar */
+body {
+  margin-top: 60px;      /* Same as .navbar height */
+}
+
+/* 6. Responsive: collapse into column or hamburger at narrow widths */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 10px;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .navbar li a {
+    width: 100%;
+    padding: 12px 0;
+  }
+}
