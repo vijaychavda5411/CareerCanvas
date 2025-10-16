@@ -33,7 +33,7 @@ hbs.registerHelper('formatDate', function(date) {
 
 app.engine("hbs", exphbs.engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "templates"));
 
 // Serve frontend build
 app.use(express.static(path.join(__dirname, "../client/dist")));
