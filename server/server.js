@@ -1,3 +1,4 @@
+// server/server.js
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -5,6 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import connectDB from "./db.js";
 import resumeRoutes from "./routes/resumeRoutes.js";
+import exphbs from "express-handlebars";
 
 dotenv.config();
 
@@ -21,16 +23,21 @@ connectDB();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// API routes (must come before frontend build)
-app.use("/api", resumeRoutes);
+app.engine("hbs", exphbs.engine({ extname: ".hbs" }));
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "views"));
 
 // Serve frontend build
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-// Catch-all for React routing
-app.get("*", (req, res) => {
+// API routes
+app.use("/api", resumeRoutes);
+
+// Catch-all for React routing (Express 5 safe)
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
+// Use Render port or default
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
