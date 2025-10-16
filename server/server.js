@@ -23,14 +23,6 @@ connectDB();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const hbs = require('hbs');
-
-hbs.registerHelper('formatDate', function(date) {
-  if(!date) return '';
-  return new Date(date).toLocaleDateString();
-});
-
-
 app.engine("hbs", exphbs.engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "templates"));
