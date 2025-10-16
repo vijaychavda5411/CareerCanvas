@@ -1,4 +1,3 @@
-// server/server.js
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -22,17 +21,16 @@ connectDB();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// API routes (must come before frontend build)
+app.use("/api", resumeRoutes);
+
 // Serve frontend build
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-// API routes
-app.use("/api", resumeRoutes);
-
-// Catch-all for React routing (Express 5 safe)
-app.get(/.*/, (req, res) => {
+// Catch-all for React routing
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
-// Use Render port or default
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
