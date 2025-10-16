@@ -141,50 +141,58 @@ export const saveProjects = async (req, res) => {
 
 //render resume
 
-export const renderResume = async (req,res) => {
-  try{
-    const { email} = req.params;
-    const { template , download} = req.query;
+export const renderResume = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { template, download } = req.query;
     const templateName = template === "modern" ? "modern" : "colorful";
 
-    const resumeDoc = await Resume.findById(email);
+    console.log("🎯 Rendering resume for:", email);
+    console.log("📄 Template:", templateName);
 
-    if(!resumeDoc){
-      return res.status(404).send("Resume not found");
+    const resumeDoc = await Resume.findById(email);
+    console.log("📦 Resume document found:", !!resumeDoc);
+
+    if (!resumeDoc) {
+      return res.status(404).send("Resume not found in MongoDB");
     }
 
     const resume = resumeDoc.toObject();
 
-    const hbs = req.app.get("view engine");
-    res.render(`template/${templateName}`,{ resume }, async (err, html) => {
-      if(err) return res.status(500).send("Error rendering tamplate");
+    res.render(`template/${templateName}`, { resume }, async (err, html) => {
+      if (err) {
+        console.error("🧩 Handlebars render error:", err);
+        return res.status(500).send("Error rendering template");
+      }
 
-      
-      if(download === "true"){
+      if (download === "true") {
         const browser = await puppeteer.launch({
-            headless: true,
-            args: ["--no-sandbox", "--disable-setuid-sandbox", "--no-sandbox","--disable-setuid-sandbox","--disable-dev-shm-usage","--single-process","--disable-gpu","--disable-extensions",],
-          });
+          headless: true,
+          args: [
+            "--no-sandbox",
+            "--disable-setuid-sandbox",
+            "--disable-dev-shm-usage",
+            "--disable-gpu",
+          ],
+        });
+
         const page = await browser.newPage();
-        await page.setContent(html,{waitUntil: "networkidle0",timeout: 60000});
-        const pdfBuffer = await page.pdf({format:"A4"});
+        await page.setContent(html, { waitUntil: "networkidle0", timeout: 60000 });
+        const pdfBuffer = await page.pdf({ format: "A4" });
         await browser.close();
 
         res.set({
-          "Content-Type":"application/pdf",
-          "Content-Disposition":`attachment;filename=${templateName}_resume.pdf`,
-          "Content-Length": pdfBuffer.length,
+          "Content-Type": "application/pdf",
+          "Content-Disposition": `attachment; filename=${templateName}_resume.pdf`,
         });
 
         return res.send(pdfBuffer);
-      }else{
-        res.send(html);
       }
-    });
 
-  }catch(err){
-    console.error("Error rendering resume:", err);
+      res.send(html);
+    });
+  } catch (err) {
+    console.error("🔥 Error rendering resume:", err);
     res.status(500).send("Error rendering resume");
   }
-
-}
+};
