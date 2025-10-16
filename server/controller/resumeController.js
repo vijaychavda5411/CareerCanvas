@@ -184,7 +184,7 @@ export const renderResume = async (req,res) => {
 
   }catch(err){
     console.error("Error rendering resume:", err);
-    console.status(500).send("Error rendering resume");
+    res.status(500).send("Error rendering resume");
   }
 
 }
