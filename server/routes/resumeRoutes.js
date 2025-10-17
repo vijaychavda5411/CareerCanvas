@@ -10,6 +10,6 @@ router.post("/work-experience",saveWorkExperience);
 router.post("/skills",saveSkills);
 router.post("/projects",saveProjects);
 
-router.get("/resume/:email", renderResume);
+router.get("/resume/:email",renderResume);
 
 export default router;
