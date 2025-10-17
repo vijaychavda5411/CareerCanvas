@@ -38,7 +38,7 @@ const hbs = create({
 
 app.engine("hbs", hbs.engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "templates"));
+app.set("views", path.join(__dirname, "templates/template"));
 
 // Serve frontend build
 app.use(express.static(path.join(__dirname, "../client/dist")));
