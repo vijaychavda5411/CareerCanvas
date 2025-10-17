@@ -6,7 +6,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import connectDB from "./db.js";
 import resumeRoutes from "./routes/resumeRoutes.js";
-import exphbs from "express-handlebars";
+import { create } from "express-handlebars";
+
+
 
 dotenv.config();
 
@@ -23,7 +25,18 @@ connectDB();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.engine("hbs", exphbs.engine({ extname: ".hbs" }));
+const hbs = create({
+  extname: ".hbs",
+  defaultLayout: false, 
+  helpers: {
+    formatDate: function (date) {
+      if (!date) return "";
+      return new Date(date).toLocaleDateString();
+    },
+  },
+});
+
+app.engine("hbs", hbs.engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "templates"));
 
