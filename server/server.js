@@ -4,53 +4,52 @@ import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+import { create as createHandlebars } from "express-handlebars";
 import connectDB from "./db.js";
 import resumeRoutes from "./routes/resumeRoutes.js";
-import { create } from "express-handlebars";
 
-
-
+// Load environment variables
 dotenv.config();
 
+// Express app
 const app = express();
-
-// Middleware
 app.use(express.json());
 app.use(cors());
 
 // Connect MongoDB
 connectDB();
 
-// ES Modules fix for __dirname
+// Fix __dirname and __filename in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const hbs = create({
+// ✅ Handlebars setup — no layout, with helper
+const hbs = createHandlebars({
   extname: ".hbs",
-  defaultLayout: false, 
+  defaultLayout: false,
   helpers: {
-    formatDate: function (date) {
-      if (!date) return "";
-      return new Date(date).toLocaleDateString();
-    },
+    formatDate: (date) => (date ? new Date(date).toLocaleDateString() : ""),
   },
 });
 
-app.engine("hbs", hbs.engine({ extname: ".hbs" }));
+// ✅ Register engine properly
+app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
+
+// ✅ Set views folder (where your .hbs templates are)
 app.set("views", path.join(__dirname, "templates/template"));
 
-// Serve frontend build
+// ✅ Serve React build (client)
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-// API routes
+// ✅ API routes
 app.use("/api", resumeRoutes);
 
-// Catch-all for React routing (Express 5 safe)
-app.get(/.*/, (req, res) => {
+// ✅ Fallback route for React Router
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
-// Use Render port or default
+// ✅ Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
