@@ -13,6 +13,10 @@ dotenv.config();
 
 // Express app
 const app = express();
+app.use(cors({
+  origin: ["https://careercanvas-1-2w94.onrender.com", "http://localhost:5173"],
+  methods: ["GET", "POST"]
+}));
 app.use(express.json());
 app.use(cors());
 
