@@ -143,6 +143,9 @@ export const saveProjects = async (req, res) => {
 
 export const renderResume = async (req, res) => {
   try {
+    
+    res.setHeader("Access-Control-Allow-Origin", "https://careercanvas-1-2w94.onrender.com");
+
     const { email } = req.params;
     const { template, download } = req.query;
     const templateName = template === "modern" ? "modern" : "colorful";
@@ -173,8 +176,11 @@ export const renderResume = async (req, res) => {
             "--disable-setuid-sandbox",
             "--disable-dev-shm-usage",
             "--disable-gpu",
+            "--no-zygote",
+             "--single-process"
           ],
         });
+
 
         const page = await browser.newPage();
         await page.setContent(html, { waitUntil: "networkidle0", timeout: 60000 });
