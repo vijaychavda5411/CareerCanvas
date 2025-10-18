@@ -15,10 +15,11 @@ dotenv.config();
 const app = express();
 app.use(cors({
   origin: ["https://careercanvas-1-2w94.onrender.com", "http://localhost:5173"],
-  methods: ["GET", "POST"]
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
 }));
 app.use(express.json());
-app.use(cors());
+
 
 // Connect MongoDB
 connectDB();
