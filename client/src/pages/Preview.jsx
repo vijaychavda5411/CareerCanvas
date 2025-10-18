@@ -15,7 +15,7 @@ const Preview = () => {
   const downloadPDF = async () => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/resume/${email}?template=${template}&download=true`
+        `${import.meta.env.VITE_API_URL || ""}/api/resume/${email}?template=${template}&download=true`
       );
 
       if (!response.ok) {
