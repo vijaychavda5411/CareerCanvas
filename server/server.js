@@ -37,7 +37,7 @@ app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
 
 // ✅ Set views folder (where your .hbs templates are)
-app.set("views", path.join(__dirname, "templates/template"));
+app.set("views", path.join(__dirname, "templates"));
 
 // ✅ Serve React build (client)
 app.use(express.static(path.join(__dirname, "../client/dist")));
