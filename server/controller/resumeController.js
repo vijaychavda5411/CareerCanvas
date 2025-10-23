@@ -162,7 +162,7 @@ export const renderResume = async (req, res) => {
     if (!resumeDoc) {
       return res.status(404).send("Resume not found in MongoDB");
     }
-
+n
     const resume = resumeDoc.toObject();
 
     res.render(`template/${templateName}`, { resume }, async (err, html) => {
@@ -176,6 +176,9 @@ export const renderResume = async (req, res) => {
         try {
           const browser = await puppeteer.launch({
             headless: true,
+            executablePath:
+              process.env.PUPPETEER_EXECUTABLE_PATH ||
+               puppeteer.executablePath(),
             args: [
               "--no-sandbox",
               "--disable-setuid-sandbox",

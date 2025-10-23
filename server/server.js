@@ -7,8 +7,19 @@ import { fileURLToPath } from "url";
 import { create as createHandlebars } from "express-handlebars";
 import connectDB from "./db.js";
 import resumeRoutes from "./routes/resumeRoutes.js";
+import puppeteer from "puppeteer";
+import { execSync } from "child_process";
+
+try {
+  console.log("📦 Ensuring Chrome is installed for Puppeteer...");
+  execSync("npx puppeteer browsers install chrome", { stdio: "inherit" });
+} catch (err) {
+  console.error("⚠️ Chrome installation failed:", err);
+}
+
 
 // Load environment variables
+
 dotenv.config();
 
 // Express app
