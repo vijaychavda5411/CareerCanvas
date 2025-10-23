@@ -143,8 +143,11 @@ export const saveProjects = async (req, res) => {
 
 export const renderResume = async (req, res) => {
   try {
-    
+    // ✅ Allow frontend domain (CORS)
     res.setHeader("Access-Control-Allow-Origin", "https://careercanvas-1-2w94.onrender.com");
+    res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
 
     const { email } = req.params;
     const { template, download } = req.query;
@@ -168,37 +171,47 @@ export const renderResume = async (req, res) => {
         return res.status(500).send("Error rendering template");
       }
 
+      // ✅ If download=true → Generate PDF
       if (download === "true") {
-        const browser = await puppeteer.launch({
-          headless: true,
-          args: [
-            "--no-sandbox",
-            "--disable-setuid-sandbox",
-            "--disable-dev-shm-usage",
-            "--disable-gpu",
-            "--no-zygote",
-             "--single-process"
-          ],
-        });
+        try {
+          const browser = await puppeteer.launch({
+            headless: true,
+            args: [
+              "--no-sandbox",
+              "--disable-setuid-sandbox",
+              "--disable-dev-shm-usage",
+              "--disable-accelerated-2d-canvas",
+              "--no-first-run",
+              "--no-zygote",
+              "--disable-gpu",
+              "--single-process"
+            ],
+          });
 
+          const page = await browser.newPage();
+          await page.setContent(html, { waitUntil: "networkidle0", timeout: 60000 });
 
-        const page = await browser.newPage();
-        await page.setContent(html, { waitUntil: "networkidle0", timeout: 60000 });
-        const pdfBuffer = await page.pdf({ format: "A4" });
-        await browser.close();
+          const pdfBuffer = await page.pdf({ format: "A4" });
+          await browser.close();
 
-        res.set({
-          "Content-Type": "application/pdf",
-          "Content-Disposition": `attachment; filename=${templateName}_resume.pdf`,
-        });
+          res.set({
+            "Content-Type": "application/pdf",
+            "Content-Disposition": `attachment; filename=${templateName}_resume.pdf`,
+          });
 
-        return res.send(pdfBuffer);
+          return res.send(pdfBuffer);
+        } catch (pdfError) {
+          console.error("🧨 Puppeteer PDF generation failed:", pdfError);
+          return res.status(500).send("Error generating PDF: " + pdfError.message);
+        }
       }
 
+      // ✅ If not download → Send HTML response
       res.send(html);
     });
+
   } catch (err) {
     console.error("🔥 Error rendering resume:", err);
-    res.status(500).send("Error rendering resume");
+    res.status(500).send("Error rendering resume: " + err.message);
   }
 };
