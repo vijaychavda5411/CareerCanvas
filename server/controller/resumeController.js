@@ -162,7 +162,7 @@ export const renderResume = async (req, res) => {
     if (!resumeDoc) {
       return res.status(404).send("Resume not found in MongoDB");
     }
-n
+
     const resume = resumeDoc.toObject();
 
     res.render(`template/${templateName}`, { resume }, async (err, html) => {
@@ -214,7 +214,7 @@ n
     });
 
   } catch (err) {
-    console.error("🔥 Error rendering resume:", err);
+    console.error("🔥 Error rendering resume:", err);33333
     res.status(500).send("Error rendering resume: " + err.message);
   }
 };
