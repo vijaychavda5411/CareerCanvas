@@ -20,6 +20,8 @@ function Login() {
   };
 
   return (
+    <div className="page-wrapper">
+  <div className="page-box">
     <div className="auth-container">
       <form onSubmit={handleLogin} className="auth-form">
         <h2>Login</h2>
@@ -40,6 +42,8 @@ function Login() {
           Don’t have an account? <Link to="/register">Register</Link>
         </p>
       </form>
+    </div>
+    </div>
     </div>
   );
 }

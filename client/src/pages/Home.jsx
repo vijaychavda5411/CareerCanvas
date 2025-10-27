@@ -43,6 +43,8 @@ function Home() {
   };
 
   return (
+    <div className="page-wrapper">
+  <div className="page-box">
     <div className="page-container">
       <div className="form-wrapper">
         <form onSubmit={handleSubmit}>
@@ -93,6 +95,8 @@ function Home() {
           </button>
         </form>
       </div>
+    </div>
+    </div>
     </div>
   );
 }

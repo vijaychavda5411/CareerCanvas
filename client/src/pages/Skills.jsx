@@ -29,6 +29,8 @@ function Skills() {
   };
 
   return (
+    <div className="page-wrapper">
+  <div className="page-box">
     <div className="s-form-wrapper">
       <label className="s-label">Skills</label>
       <form onSubmit={handleSubmit}>
@@ -45,6 +47,8 @@ function Skills() {
           Submit
         </button>
       </form>
+    </div>
+    </div>
     </div>
   );
 }

@@ -1,9 +1,56 @@
+/* Global resets and clean typography */
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Poppins", "Segoe UI", Roboto, sans-serif;
+  background-color: #f7f9fc; /* soft gray-blue background */
+  color: #333; /* readable dark text */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Keeps spacing below fixed navbar */
 main {
-  padding-top: 70px; /* equal or a little bigger than navbar height */
+  padding-top: 80px; /* slightly more than navbar height for spacing */
+  min-height: 100vh;
+  
+}
+
+/* Make everything look smooth */
+* {
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Headings and text spacing */
+h1, h2, h3, h4, h5 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #222;
+  margin-top: 0;
+}
+
+p, label, input, button {
+  font-family: inherit;
+  font-size: 16px;
+}
+
+/* Links default style (can apply globally) */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* Improve layout on smaller screens */
+@media (max-width: 768px) {
+  main {
+    padding-top: 100px; /* more space for collapsed navbar */
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }

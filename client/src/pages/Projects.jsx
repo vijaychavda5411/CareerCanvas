@@ -42,6 +42,8 @@ function Projects() {
   };
 
   return (
+    <div className="page-wrapper">
+  <div className="page-box">
     <div className="p-form-wrapper">
       <label className="p-label">Projects</label>
       <button type="button" className="p-btn-add" onClick={handleAdd}>➕ Add</button>
@@ -103,6 +105,8 @@ function Projects() {
 
         <button type="submit" className="P-submit-btn">Submit</button>
       </form>
+    </div>
+    </div>
     </div>
   );
 }

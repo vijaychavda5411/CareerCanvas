@@ -29,7 +29,8 @@ function CareerObjective() {
   
   return (
     
-      
+    <div className="page-wrapper">
+    <div className="page-box">
       <div className="c-page-container">
         <div className="c-form-wrapper">
            <form onSubmit={handleSubmit}>
@@ -38,6 +39,8 @@ function CareerObjective() {
         <button type="submit" name="textarea" className="c-submit-btn">Submit</button>
       </form>
 
+    </div>
+    </div>
     </div>
     </div>
   );

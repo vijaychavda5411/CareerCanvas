@@ -1,21 +1,4 @@
-  /* Page wrapper (centers everything under navbar) */
-.page-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px; /* pushes below navbar */
-}
 
-/* Form wrapper box */
-.form-wrapper {
-  width: 800px;
-  max-width: 100%;
-  background: #fff;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Title */
 .form-title {
   font-size: 22px;
   font-weight: bold;
@@ -23,45 +6,25 @@
   font-family: sans-serif;
 }
 
-/* Each row with multiple inputs */
 .form-row {
   display: flex;
   gap: 15px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
-/* Group with label + input stacked */
 .input-group {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-/* Label */
 .input-group label {
   margin-bottom: 6px;
   font-size: 14px;
   font-weight: 500;
-  font-family: sans-serif;
 }
 
-/* Input styling (same size as Projects) */
-.input-group input {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-/* Focus effect */
-.input-group input:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
-}
-
-/* Submit button */
 .submit-btn {
   display: block;
   width: 100%;
@@ -79,4 +42,10 @@
 
 .submit-btn:hover {
   background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
 }

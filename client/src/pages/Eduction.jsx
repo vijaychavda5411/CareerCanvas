@@ -40,7 +40,9 @@ function Eduction() {
 
 
    return (
-   <div className="edu-form-wrapper">
+    <div className="page-wrapper">
+  <div className="page-box">   
+    <div className="edu-form-wrapper">
 
   <label className="edu-label">Education Details</label>
   <button type="button" className="edu-btn-add" onClick={handleAdd}>
@@ -79,7 +81,8 @@ function Eduction() {
     </button>
   </form>
 </div>
-
+</div>
+</div>
 
   );
 }

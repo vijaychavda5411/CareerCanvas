@@ -1,27 +1,24 @@
 import React, { useState } from "react";
 import { useUser } from "../context/userContext";
 import API_BASE_URL from "../api";
+import "../styles/preview.css";
 
 const Preview = () => {
   const { userEmail } = useUser();
   const [template, setTemplate] = useState("modern");
-
   const email = userEmail;
+
   if (!email) return <p>Email not found. Please log in.</p>;
 
-  // URL to preview the resume
   const backendUrl = `${API_BASE_URL}/api/resume/${email}?template=${template}`;
 
-  // Download resume as PDF
   const downloadPDF = async () => {
     try {
       const response = await fetch(
         `${API_BASE_URL}/api/resume/${email}?template=${template}&download=true`
       );
 
-      if (!response.ok) {
-        throw new Error("Failed to download PDF");
-      }
+      if (!response.ok) throw new Error("Failed to download PDF");
 
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -39,23 +36,29 @@ const Preview = () => {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h2>Resume Preview</h2>
-      <div style={{ marginBottom: "1rem" }}>
-        <button onClick={() => setTemplate("modern")}>Modern</button>
-        <button onClick={() => setTemplate("colorful")}>Colorful</button>
+    <div className="preview-page">
+      <h2 className="preview-title">Resume Preview</h2>
+
+      <div className="preview-buttons">
+        <button
+          onClick={() => setTemplate("modern")}
+          className={template === "modern" ? "active" : ""}
+        >
+          Modern
+        </button>
+        <button
+          onClick={() => setTemplate("colorful")}
+          className={template === "colorful" ? "active" : ""}
+        >
+          Colorful
+        </button>
         <button onClick={downloadPDF}>Download PDF</button>
       </div>
 
       <iframe
         src={backendUrl}
         title="Resume Preview"
-        style={{
-          width: "800px",
-          height: "1130px",
-          border: "2px solid #ccc",
-          borderRadius: "8px",
-        }}
+        className="preview-frame"
       ></iframe>
     </div>
   );

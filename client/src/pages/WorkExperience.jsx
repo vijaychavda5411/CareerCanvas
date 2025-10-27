@@ -35,6 +35,8 @@ function WorkExperience() {
   };
 
   return (
+    <div className="page-wrapper">
+  <div className="page-box">
     <div className="work-form-wrapper">
       <label className="work-label">Work Experience</label>
       <button type="button" className="work-btn-add" onClick={handleAdd}>
@@ -96,6 +98,8 @@ function WorkExperience() {
           Submit
         </button>
       </form>
+    </div>
+    </div>
     </div>
   );
 }

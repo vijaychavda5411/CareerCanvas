@@ -14,6 +14,8 @@ function Register() {
   };
 
   return (
+    <div className="page-wrapper">
+  <div className="page-box">
     <div className="auth-container">
       <form onSubmit={handleRegister} className="auth-form">
         <h2>Register</h2>
@@ -34,6 +36,8 @@ function Register() {
           Already have an account? <Link to="/">Login</Link>
         </p>
       </form>
+    </div>
+    </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import "./App.css";
 import React from 'react';
 import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import "./styles/global.css";
 import './styles/nav.css';
 
 import Login from './pages/Login';
